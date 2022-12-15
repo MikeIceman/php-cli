@@ -21,4 +21,3 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 - customize file `docker/.env.test`
 - run `composer install`
 - run `composer test`
-
