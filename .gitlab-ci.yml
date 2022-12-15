@@ -1,0 +1,49 @@
+image: php:8.1
+
+stages:
+    - build
+    - code-style
+    - test
+
+composer:
+    stage: build
+    cache:
+        key: ${CI_COMMIT_REF_SLUG}-composer
+        paths:
+            - vendor/
+    script:
+        - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+    artifacts:
+        expire_in: 1 month
+        paths:
+            - vendor/
+    only:
+        - merge_requests
+        - develop
+        - master
+
+code style:
+    stage: code-style
+    dependencies:
+        - composer
+    script:
+        - composer check-cs
+    only:
+        - merge_requests
+        - develop
+        - master
+
+phpunit:
+    stage: test
+    dependencies:
+        - composer
+    artifacts:
+        expire_in: 1 month
+        paths:
+            - build/clover.xml
+    script:
+        - vendor/bin/phpunit --coverage-text --colors=never
+    only:
+        - merge_requests
+        - develop
+        - master
