@@ -1,0 +1,55 @@
+{
+    "name": "mikeiceman/php-cli",
+    "type": "library",
+    "description": "Cli helper",
+    "keywords": [
+        "helper",
+        "cli"
+    ],
+    "homepage": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mike Iceman",
+            "email": "i@iceman.pw"
+        }
+    ],
+    "require": {
+        "php": "~8.1",
+        "ext-fileinfo": "*",
+        "ext-json": "*",
+        "beberlei/assert": "^3.2",
+        "myclabs/php-enum": "^1.7"
+    },
+    "require-dev": {
+        "codeception/verify": "^1",
+        "mockery/mockery": "^1.3",
+        "phpunit/phpunit": "^9",
+        "squizlabs/php_codesniffer": "^3.0",
+        "vlucas/phpdotenv": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MikeIceman\\Helpers\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MikeIceman\\Helpers\\Tests\\": "tests"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "test": "phpunit --colors=always --coverage-text",
+        "test-nc": "phpunit -v --stop-on-error --colors=always",
+        "check-cs": "phpcs",
+        "fix-cs": "phpcbf"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.1"
+        }
+    }
+}
